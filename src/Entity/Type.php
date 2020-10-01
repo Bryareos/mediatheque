@@ -38,4 +38,5 @@ class Type
 
         return $this;
     }
+    //TODO: Créer relation manyToMany entre Type et les différentes spec
 }

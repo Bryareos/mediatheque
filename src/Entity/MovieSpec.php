@@ -22,11 +22,6 @@ class MovieSpec
      */
     private $duration;
 
-    /**
-     * @ORM\Column(type="json")
-     */
-    private $actors = [];
-
     public function getId(): ?int
     {
         return $this->id;
@@ -40,18 +35,6 @@ class MovieSpec
     public function setDuration(int $duration): self
     {
         $this->duration = $duration;
-
-        return $this;
-    }
-
-    public function getActors(): ?array
-    {
-        return $this->actors;
-    }
-
-    public function setActors(array $actors): self
-    {
-        $this->actors = $actors;
 
         return $this;
     }

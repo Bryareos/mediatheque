@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BookingRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,40 +20,65 @@ class Booking
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="bookings")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $start_at;
+    private $User;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\OneToMany(targetEntity=BookingMedia::class, mappedBy="booking_id", orphanRemoval=true)
      */
-    private $end_at;
+    private $bookingMedia;
+
+    public function __construct()
+    {
+        $this->bookingMedia = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getStartAt(): ?\DateTimeInterface
+    public function getUser(): ?User
     {
-        return $this->start_at;
+        return $this->User;
     }
 
-    public function setStartAt(\DateTimeInterface $start_at): self
+    public function setUser(?User $User): self
     {
-        $this->start_at = $start_at;
+        $this->User = $User;
 
         return $this;
     }
 
-    public function getEndAt(): ?\DateTimeInterface
+    /**
+     * @return Collection|BookingMedia[]
+     */
+    public function getBookingMedia(): Collection
     {
-        return $this->end_at;
+        return $this->bookingMedia;
     }
 
-    public function setEndAt(\DateTimeInterface $end_at): self
+    public function addBookingMedium(BookingMedia $bookingMedium): self
     {
-        $this->end_at = $end_at;
+        if (!$this->bookingMedia->contains($bookingMedium)) {
+            $this->bookingMedia[] = $bookingMedium;
+            $bookingMedium->setBookingId($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBookingMedium(BookingMedia $bookingMedium): self
+    {
+        if ($this->bookingMedia->contains($bookingMedium)) {
+            $this->bookingMedia->removeElement($bookingMedium);
+            // set the owning side to null (unless already changed)
+            if ($bookingMedium->getBookingId() === $this) {
+                $bookingMedium->setBookingId(null);
+            }
+        }
 
         return $this;
     }
