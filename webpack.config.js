@@ -1,4 +1,5 @@
-var Encore = require('@symfony/webpack-encore');
+const Encore = require('@symfony/webpack-encore');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 // Manually configure the runtime environment if not already configured yet by the "encore" command.
 // It's useful when you use tools that rely on webpack.config.js file.
@@ -23,7 +24,7 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
-    .addEntry('app', './assets/app.js')
+    .addEntry('app', './assets/js/app.js')
     //.addEntry('page1', './assets/page1.js')
     //.addEntry('page2', './assets/page2.js')
 
@@ -54,7 +55,7 @@ Encore
     })
 
     // enables Sass/SCSS support
-    //.enableSassLoader()
+    .enableSassLoader()
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
@@ -64,11 +65,51 @@ Encore
     //.enableIntegrityHashes(Encore.isProduction())
 
     // uncomment if you're having problems with a jQuery plugin
-    //.autoProvidejQuery()
+    .autoProvidejQuery()
 
     // uncomment if you use API Platform Admin (composer req api-admin)
     //.enableReactPreset()
     //.addEntry('admin', './assets/admin.js')
+
+    .copyFiles({
+        from: './assets/images',
+        to: 'images/[path][name].[ext]'
+    })
+    .addPlugin(
+        new CopyWebpackPlugin({
+            patterns: [
+                //Libraries MDB
+                {
+                    from: './node_modules/mdbootstrap/js/mdb.min.js',
+                    to: 'js/mdb.min.js'
+                },
+                {
+                    from: './node_modules/mdbootstrap/js/mdb.min.js.map',
+                    to: 'js/mdb.min.js.map'
+                },
+                {
+                    from: './node_modules/mdbootstrap/js/bootstrap.min.js',
+                    to: 'js/bootstrap.min.js'
+                },
+                {
+                    from: './node_modules/mdbootstrap/js/jquery.min.js',
+                    to: 'js/jquery.min.js'
+                },
+                {
+                    from: './node_modules/mdbootstrap/js/addons/datatables.min.js',
+                    to: 'js/addons/datatables.min.js'
+                },
+                {
+                    from: './node_modules/mdbootstrap/js/addons/datatables.min.js.map',
+                    to: 'js/addons/datatables.min.js.map'
+                },
+                {
+                    from: './node_modules/mdbootstrap/js/popper.min.js',
+                    to: 'js/popper.min.js'
+                }
+            ]
+        })
+    )
 ;
 
 module.exports = Encore.getWebpackConfig();
