@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SerieSpecRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class SerieSpec
      * @ORM\Column(type="integer")
      */
     private $episode_number;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Type::class, inversedBy="serieSpecs")
+     */
+    private $type;
+
+    public function __construct()
+    {
+        $this->type = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,32 @@ class SerieSpec
     public function setEpisodeNumber(int $episode_number): self
     {
         $this->episode_number = $episode_number;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Type[]
+     */
+    public function getType(): Collection
+    {
+        return $this->type;
+    }
+
+    public function addType(Type $type): self
+    {
+        if (!$this->type->contains($type)) {
+            $this->type[] = $type;
+        }
+
+        return $this;
+    }
+
+    public function removeType(Type $type): self
+    {
+        if ($this->type->contains($type)) {
+            $this->type->removeElement($type);
+        }
 
         return $this;
     }
