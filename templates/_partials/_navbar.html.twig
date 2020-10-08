@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-lg navbar-dark indigo mb-5">
+    <a class="navbar-brand" href="{{path('homepage')}}">MediaPole</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#basicExampleNav"
+            aria-controls="basicExampleNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="basicExampleNav">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">TODO</a>
+                <div class="dropdown-menu dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="">TODO</a>
+                </div>
+            </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            {% if app.user %}
+                {# TODO: Add checkLogin route ↓ #}
+                <a class="nav-link" href="">Mon Compte</a>
+                <a class="nav-link" href="{{ path('app_logout') }}">Se déconnecter</a>
+            {% else %}
+                <a href="{{ path('app_login') }}" class="btn btn-outline-success">Se connecter</a>
+                <a href="{{ path('app_register') }}" class="btn btn-outline-warning">S'inscrire</a>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success" style="position: absolute; top: 0; right: 0">
+        {{ message }}
+    </div>
+{% endfor %}
+{% for flashError in app.flashes('verify_email_error') %}
+    <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+{% endfor %}
+{% block javascripts %}
+    <script>
+        setTimeout(function() {
+                $(".alert").fadeOut();
+            },
+            3000);
+    </script>
+{% endblock %}
