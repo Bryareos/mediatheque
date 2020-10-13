@@ -19,22 +19,55 @@ class MediaRepository extends ServiceEntityRepository
         parent::__construct($registry, Media::class);
     }
 
-    // /**
-    //  * @return Media[] Returns an array of Media objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+     * @return Media[] Returns an array of Media objects
+     */
+
+    public function findAllBooks()
     {
         return $this->createQueryBuilder('m')
-            ->andWhere('m.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('m.id', 'ASC')
-            ->setMaxResults(10)
+            ->andWhere('m.book_spec is not null')
             ->getQuery()
             ->getResult()
         ;
     }
-    */
+
+    /**
+     * @return Media[]
+     */
+    public function findAllMovies()
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.movie_spec is not null')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * @return Media[]
+     */
+    public function findAllSeries()
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.serie_spec is not null')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
+    /**
+     * @return Media[]
+     */
+    public function findAllAlbums()
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.album_spec is not null')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
 
     /*
     public function findOneBySomeField($value): ?Media
