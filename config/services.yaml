@@ -27,5 +27,15 @@ services:
         resource: '../src/Controller/'
         tags: ['controller.service_arguments']
 
+    Twig\CacheExtension\CacheProviderInterface:
+        class: Twig\CacheExtension\CacheProvider\PsrCacheAdapter
+
+    Twig\CacheExtension\CacheStrategyInterface:
+        class: Twig\CacheExtension\CacheStrategy\LifetimeCacheStrategy
+
+    Twig\CacheExtension\Extension:
+        tags:
+        - { name: twig.extension }
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

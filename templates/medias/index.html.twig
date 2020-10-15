@@ -3,64 +3,64 @@
 {% block title %}{{ parent() }} - Médias {% endblock %}
 
 {% block body %}
-    <main class="container-fluid">
-        <h2 class="h2 text-center">Les livres</h2>
-        <section class="row mx-auto mb-5">
-            {% for book in books %}
-                <div class="col-3 border border-info">
-                    <p>Nom: {{ book.name }}</p>
-                    <p>Auteur: {{ book.author }}</p>
-                    <p>Description: {{ book.description }}</p>
-                    <p>Publieur: {{ book.bookSpec.publisher }}</p>
-                    <p>Nombre de pages: {{ book.bookSpec.pageNumber }}</p>
-                    <p>Genre:
-                        {{ book.bookSpec.type | join}}
-                    </p>
-                    <p>Quantité: {{ book.quantity }}</p>
-                </div>
-            {% endfor %}
-        </section>
-        <h2 class="h2 text-center">Les films</h2>
-        <section class="row mx-auto mb-5">
-            {% for movie in movies %}
-                <div class="col-3 border border-info">
-                    <p>Nom: {{ movie.name }}</p>
-                    <p>Auteur: {{ movie.author }}</p>
-                    <p>Description: {{ movie.description }}</p>
-                    <p>Durée: {{ movie.movieSpec.duration }} min</p>
-                    <p>Genre: {{ movie.movieSpec.type | join }}</p>
-                    <p>Quantité: {{ movie.quantity }}</p>
-                </div>
-            {% endfor %}
-        </section>
-        <h2 class="h2 text-center">Les séries</h2>
-        <section class="row mx-auto mb-5">
-            {% for serie in series %}
-                <div class="col-3 border border-info">
-                    <p>Nom: {{ serie.name }}</p>
-                    <p>Auteur: {{ serie.author}}</p>
-                    <p>Description: {{ serie.description }}</p>
-                    <p>Saisons: {{ serie.serieSpec.season }} saison(s)</p>
-                    <p>Episodes: {{ serie.serieSpec.episodeNumber }} épisodes</p>
-                    <p>Genre: {{ serie.serieSpec.type | join }}</p>
-                    <p>Quantité: {{ serie.quantity }}</p>
-                </div>
-            {% endfor %}
-        </section>
-        <h2 class="h2 text-center">Les albums</h2>
-        <section class="row mx-auto mb-5">
-            {% for album in albums %}
-                <div class="col-3 border border-info">
-                    <p>Nom: {{ album.name }}</p>
-                    <p>Auteur: {{ album.author }}</p>
-                    <p>Description: {{ album.description }}</p>
-                    <p>Pistes: {{ album.albumSpec.songNumber }} pistes</p>
-                    <p>Durée: {{ album.albumSpec.duration }} min</p>
-                    <p>Genre: {{ album.albumSpec.type | join }}</p>
-                    <p>Quantité: {{ album.quantity }}</p>
-                </div>
-            {% endfor %}
-        </section>
-    </main>
+    {% cache 'media' 31536000 %}
+        <main class="container-fluid">
+            <h2 class="h2 text-center">Les livres</h2>
+            <section class="row mx-auto mb-5">
+                {% for book in books %}
+                    <div class="col-3 border border-info">
+                        <p>Nom: {{ book.name }}</p>
+                        <p>Auteur: {{ book.author }}</p>
+                        <p>Description: {{ book.description }}</p>
+                        <p>Publieur: {{ book.bookSpec.publisher }}</p>
+                        <p>Nombre de pages: {{ book.bookSpec.pageNumber }}</p>
+                        <p>Genre: {{ book.bookSpec.type | join}}</p>
+                        <p>Quantité: {{ book.quantity }}</p>
+                    </div>
+                {% endfor %}
+            </section>
+            <h2 class="h2 text-center">Les films</h2>
+            <section class="row mx-auto mb-5">
+                {% for movie in movies %}
+                    <div class="col-3 border border-info">
+                        <p>Nom: {{ movie.name }}</p>
+                        <p>Auteur: {{ movie.author }}</p>
+                        <p>Description: {{ movie.description }}</p>
+                        <p>Durée: {{ movie.movieSpec.duration }} min</p>
+                        <p>Genre: {{ movie.movieSpec.type | join }}</p>
+                        <p>Quantité: {{ movie.quantity }}</p>
+                    </div>
+                {% endfor %}
+            </section>
+            <h2 class="h2 text-center">Les séries</h2>
+            <section class="row mx-auto mb-5">
+                {% for serie in series %}
+                    <div class="col-3 border border-info">
+                        <p>Nom: {{ serie.name }}</p>
+                        <p>Auteur: {{ serie.author}}</p>
+                        <p>Description: {{ serie.description }}</p>
+                        <p>Saisons: {{ serie.serieSpec.season }} saison(s)</p>
+                        <p>Episodes: {{ serie.serieSpec.episodeNumber }} épisodes</p>
+                        <p>Genre: {{ serie.serieSpec.type | join }}</p>
+                        <p>Quantité: {{ serie.quantity }}</p>
+                    </div>
+                {% endfor %}
+            </section>
+            <h2 class="h2 text-center">Les albums</h2>
+            <section class="row mx-auto mb-5">
+                {% for album in albums %}
+                    <div class="col-3 border border-info">
+                        <p>Nom: {{ album.name }}</p>
+                        <p>Auteur: {{ album.author }}</p>
+                        <p>Description: {{ album.description }}</p>
+                        <p>Pistes: {{ album.albumSpec.songNumber }} pistes</p>
+                        <p>Durée: {{ album.albumSpec.duration }} min</p>
+                        <p>Genre: {{ album.albumSpec.type | join }}</p>
+                        <p>Quantité: {{ album.quantity }}</p>
+                    </div>
+                {% endfor %}
+            </section>
+        </main>
+    {% endcache %}
 {% endblock %}
 

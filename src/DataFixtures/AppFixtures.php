@@ -67,7 +67,7 @@ class AppFixtures extends Fixture
             $book->setAuthor($faker->name);
             $book->setDescription($faker->realText());
             $book->setName($faker->domainWord);
-            $book->setImgSrc($faker->imageUrl());
+            $book->setImgSrc('https://placeimg.com/640/480/any');
             $book->setQuantity($faker->numberBetween(0, 10));
             $book->setBookSpec($spec);
             $manager->persist($book);
@@ -83,7 +83,7 @@ class AppFixtures extends Fixture
             $movie->setName($faker->domainWord);
             $movie->setAuthor($faker->name);
             $movie->setDescription($faker->realText());
-            $movie->setImgSrc($faker->imageUrl());
+            $movie->setImgSrc('https://placeimg.com/640/480/any');
             $movie->setQuantity($faker->numberBetween(0,10));
             $movie->setMovieSpec($spec);
             $manager->persist($movie);
@@ -99,7 +99,7 @@ class AppFixtures extends Fixture
             $album->setName($faker->domainWord);
             $album->setAlbumSpec($spec);
             $album->setAuthor($faker->name);
-            $album->setImgSrc($faker->imageUrl());
+            $album->setImgSrc('https://placeimg.com/640/480/any');
             $album->setQuantity($faker->numberBetween(0, 10));
             $album->setDescription($faker->realText());
             $manager->persist($album);
@@ -115,7 +115,7 @@ class AppFixtures extends Fixture
             $serie->setName($faker->domainWord);
             $serie->setDescription($faker->realText());
             $serie->setQuantity($faker->numberBetween(0, 10));
-            $serie->setImgSrc($faker->imageUrl());
+            $serie->setImgSrc('https://placeimg.com/640/480/any');
             $serie->setAuthor($faker->name);
             $serie->setSerieSpec($spec);
             $manager->persist($serie);
@@ -123,4 +123,6 @@ class AppFixtures extends Fixture
 
         $manager->flush();
     }
+    //TODO: changer imgurl par un lorempicsum
+    //TODO: utiliser vich pour les img
 }
