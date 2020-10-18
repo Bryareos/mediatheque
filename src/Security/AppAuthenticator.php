@@ -96,7 +96,7 @@ class AppAuthenticator extends AbstractFormLoginAuthenticator implements Passwor
             return new RedirectResponse($targetPath);
         }
         // TODO: Add checkLogin method in SecurityController (like in superBlog Project)
-        return new RedirectResponse($this->urlGenerator->generate(''));
+        return new RedirectResponse($this->urlGenerator->generate('homepage'));
     }
 
     protected function getLoginUrl()

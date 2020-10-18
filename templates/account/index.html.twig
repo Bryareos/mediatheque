@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AccountController!{% endblock %}
+
+{% block body %}
+    <section class="container d-flex justify-content-between">
+        <ul class="list-group mt-5 col-md-4 col-6">
+            <li class="list-group-item indigo text-warning text-center">
+                Profile
+            </li>
+            <li class="list-group-item indigo-text bg-warning">
+                <i class="fas fa-signature"></i> {{ user.firstname }} {{ user.lastname }}
+            </li>
+            <li class="list-group-item indigo-text bg-warning">
+                <i class="fas fa-at text-left"></i> {{user.email}}
+            </li>
+            <li class="list-group-item indigo-text bg-warning">
+                <i class="fas fa-glass-cheers"></i> {{user.age}}
+            </li>
+            <li class="list-group-item indigo-text bg-warning">
+                <i class="fas fa-barcode"></i> {{user.customerCode}}
+            </li>
+            <li class="list-group-item indigo-text bg-warning">
+                <i class="fas fa-map-marker-alt"></i> {{user.address}}
+            </li>
+            <li class="list-group-item indigo-text bg-warning">
+                <i class="fas fa-user-cog"></i> {{ user.roles | join(' ● ')}}
+            </li>
+        </ul>
+        <ul class="list-group mt-5 col-md-4 col-6">
+            <li class="list-group-item indigo text-warning text-center">
+                Mes réservations
+            </li>
+            <li class="list-group-item indigo-text bg-warning">
+                {{ dump(user.bookings)}}
+            </li>
+
+        </ul>
+    </section>
+{% endblock %}
