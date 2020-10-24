@@ -1,0 +1,13 @@
+.slick-arrow {
+  background-color: transparent;
+  &:before {
+    color: #3F51B5;
+  }
+}
+.slick-dotted.slick-slider {
+  margin-bottom: 5rem;
+}
+.slick-dots li.slick-active button:before {
+  color: #3F51B5;
+}
+
