@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ parent() }} - Panier{% endblock %}
+
+{% block body %}
+        <h1 class="text-center">Votre panier</h1>
+
+    {% if items | length > 0 %}
+        <table class="table mt-3">
+            <thead class="indigo text-white">
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Quantité</th>
+                <th scope="col">Type de média</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items %}
+                <tr>
+                    <th scope="row">{{ item.media.id }}</th>
+                    <td>{{ item.media.name }}</td>
+                    <td>{{ item.quantity }}</td>
+                    {% if item.media.bookSpec %}
+                        <td>Livre</td>
+                    {% endif %}
+                    {% if item.media.movieSpec %}
+                        <td>Film</td>
+                    {% endif %}
+                    {% if item.media.serieSpec %}
+                        <td>Série</td>
+                    {% endif %}
+                    {% if item.media.albumSpec %}
+                        <td>Album</td>
+                    {% endif %}
+{#                    <td>{{ item.media.getType() }}</td>#}
+                    <td>
+                        <a href="{{ path('cart_remove', {'id': item.media.id}) }}" class="btn btn-sm m-0 btn-danger">
+                            <i class="fas fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>Surprise, c'est vide !</p>
+    {% endif %}
+{{ dump(items) }}
+{% endblock %}

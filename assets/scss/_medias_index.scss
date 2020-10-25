@@ -1,3 +1,7 @@
+.slick-slide {
+  outline: 0;
+  outline: none;
+}
 .slick-arrow {
   background-color: transparent;
   &:before {
@@ -10,4 +14,3 @@
 .slick-dots li.slick-active button:before {
   color: #3F51B5;
 }
-

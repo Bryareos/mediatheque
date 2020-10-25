@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+{% block title %}{{ parent() }} - {{ media.name }}{% endblock %}
+{% block body %}
+<main>
+    <h2>{{ media.name }}</h2>
+    <p>{{ media.author }}</p>
+</main>
+{% endblock %}
+
+
+

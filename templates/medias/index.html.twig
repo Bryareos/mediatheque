@@ -12,7 +12,9 @@
                         <img src="{{ book.imgSrc }}" alt="" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">{{ book.name }} par {{ book.author }}</h5>
-                            <p class="card-text">{{ book.description }}</p>
+                            <p class="card-text">{{ book.description | slice(0, 195)~' ...' }}</p>
+                            <a href="{{ path('media', {'id': book.id}) }}" class="btn btn-primary">Détails</a>
+                            <a href="{{ path('cart_add', {'id': book.id}) }}" class="stretched-link btn btn-success">Ajouter</a>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">Quantité: {{ book.quantity }}</small>
@@ -27,7 +29,9 @@
                         <img src="{{ movie.imgSrc }}" alt="" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">{{ movie.name }} par {{ movie.author }}</h5>
-                            <p class="card-text">{{ movie.description }}</p>
+                            <p class="card-text">{{ movie.description | slice(0, 195)~' ...' }}</p>
+                            <a href="{{ path('media', {'id': movie.id}) }}" class="btn btn-primary">Détails</a>
+                            <a href="{{ path('cart_add', {'id': movie.id}) }}" class="stretched-link btn btn-success">Ajouter</a>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">Quantité: {{ movie.quantity }}</small>
@@ -42,7 +46,9 @@
                         <img src="{{ serie.imgSrc }}" alt="" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">{{ serie.name }} par {{ serie.author }}</h5>
-                            <p class="card-text">{{ serie.description }}</p>
+                            <p class="card-text">{{ serie.description | slice(0,195)~' ...'}}</p>
+                            <a href="{{ path('media', {'id': serie.id}) }}" class="btn btn-primary">Détails</a>
+                            <a href="{{ path('cart_add', {'id': serie.id}) }}" class="stretched-link btn btn-success">Ajouter</a>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">Quantité: {{ serie.quantity }}</small>
@@ -57,7 +63,9 @@
                         <img src="{{ album.imgSrc }}" alt="" class="card-img-top">
                         <div class="card-body">
                             <h5 class="card-title">{{ album.name }} par {{ album.author }}</h5>
-                            <p class="card-text">{{ album.description }}</p>
+                            <p class="card-text">{{ album.description | slice(0,195)~' ...' }}</p>
+                            <a href="{{ path('media', {'id': album.id}) }}" class="btn btn-primary">Détails</a>
+                            <a href="{{ path('cart_add', {'id': album.id}) }}" class="stretched-link btn btn-success">Ajouter</a>
                         </div>
                         <div class="card-footer">
                             <small class="text-muted">Quantité: {{ album.quantity }}</small>

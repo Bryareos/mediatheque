@@ -28,4 +28,17 @@ class MediasController extends AbstractController
             'albums' => $repo->findAllAlbums(),
         ]);
     }
+
+    /**
+     * @Route("/media/{id}", name="media")
+     * @param int $id
+     * @param MediaRepository $repo
+     * @return Response
+     */
+    public function getOne(int $id, MediaRepository $repo)
+    {
+        return $this->render('medias/media.html.twig', [
+            'media' => $repo->find($id)
+        ]);
+    }
 }
