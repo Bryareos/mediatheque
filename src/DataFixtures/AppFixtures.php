@@ -123,6 +123,4 @@ class AppFixtures extends Fixture
 
         $manager->flush();
     }
-    //TODO: changer imgurl par un lorempicsum
-    //TODO: utiliser vich pour les img
 }

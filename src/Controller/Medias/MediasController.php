@@ -10,12 +10,12 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Class MediasController
  * @package App\Controller\Medias
- * @Route("/medias")
+ * @Route("/")
  */
 class MediasController extends AbstractController
 {
     /**
-     * @Route("/", name="medias")
+     * @Route("/", name="homepage")
      * @param MediaRepository $repo
      * @return Response
      */

@@ -60,23 +60,23 @@ class Booking
         return $this->bookingMedia;
     }
 
-    public function addBookingMedium(BookingMedia $bookingMedium): self
+    public function addBookingMedia(BookingMedia $bookingMedia): self
     {
-        if (!$this->bookingMedia->contains($bookingMedium)) {
-            $this->bookingMedia[] = $bookingMedium;
-            $bookingMedium->setBookingId($this);
+        if (!$this->bookingMedia->contains($bookingMedia)) {
+            $this->bookingMedia[] = $bookingMedia;
+            $bookingMedia->setBookingId($this);
         }
 
         return $this;
     }
 
-    public function removeBookingMedium(BookingMedia $bookingMedium): self
+    public function removeBookingMedia(BookingMedia $bookingMedia): self
     {
-        if ($this->bookingMedia->contains($bookingMedium)) {
-            $this->bookingMedia->removeElement($bookingMedium);
+        if ($this->bookingMedia->contains($bookingMedia)) {
+            $this->bookingMedia->removeElement($bookingMedia);
             // set the owning side to null (unless already changed)
-            if ($bookingMedium->getBookingId() === $this) {
-                $bookingMedium->setBookingId(null);
+            if ($bookingMedia->getBookingId() === $this) {
+                $bookingMedia->setBookingId(null);
             }
         }
 
